@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': name.invalid && (name.dirty || name.touched),
+              'is-valid': name.valid && (name.dirty || name.touched)
+            }"
+          />
+
+          <div
+          *ngIf="name.valid && (name.dirty || name.touched)"
+          class="valid-feedback"
+        >
+          Looks good!
+        </div>
+
+        <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+          Name is required.
+        </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-control"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            [ngClass]="{
+              'is-invalid': password.invalid && password.touched,
+              'is-valid': password.valid && (password.dirty || password.touched)
+            }"
+          />
+
+
+          <div
+          *ngIf="password.valid && (password.dirty || password.touched)"
+          class="form-text valid-feedback"
+        >
+          Looks good!
+        </div>
+
+        <div
+          *ngIf="password.invalid && password.touched"
+          class="form-text invalid-feedback"
+        >
+          Password is required.
+        </div>
+
+        <!-- <div
+        *ngIf="password.invalid && password.touched"
+        class="form-text invalid-feedback"
+      >
+      <h3>Password must contain the following:</h3>
+      <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+      <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+      <p id="number" class="invalid">A <b>number</b></p>
+      <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+      </div> -->
+        
+        </div>
+
+
+        <a href="#" class="d-block">Forget Password?</a>
+
+        <button
+          type="submit"
+          [disabled]="!loginForm.valid"
+          class="btn btn-success  mt-3"
+        >
+          Login
+        </button>
+    </form>
+
+    <!-- <p>{{ loginForm.value | json }}</p>
+    <p>{{ loginForm.status }}</p> -->
+  </div>
+</div>
