@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="form-group">
+    <input type="number" min="1" class="form-control" [(ngModel)]="requestId" placeholder="Request Id..." />
+    <i class="fas fa-search icon search-icon" aria-hidden="true"></i>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div class="list-group">
+      <app-request
+        [routerLink]="['./', request.id]"
+        [request]="request"
+        *ngFor="let request of requests | search: requestId"
+        (click)="getDetails(request)"
+      ></app-request>
+    </div>
+  </div>
+</div>

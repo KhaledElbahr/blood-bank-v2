@@ -1,3 +1,15 @@
-<div class="container">
-  <app-login></app-login>
-</div>
+<!-- <div class="container">
+   <app-login></app-login> 
+</div> -->
+
+<nav>
+  <a 
+  routerLink="/admin" 
+  routerLinkActive="active">Admin</a>
+  <a 
+  routerLink="/doctor" 
+  routerLinkActive="active">Doctor</a>
+  <a routerLink="/" routerLinkActive="active">Login</a>
+</nav>
+
+<router-outlet></router-outlet>

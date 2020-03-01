@@ -1,0 +1,170 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <form [formGroup]="RequestForm" (ngSubmit)="onSubmit()">
+      <!-- <div class="form-group">
+        <label for="productName"
+          >Product Name
+          <input
+            id="productName"
+            type="text"
+            formControlName="productName"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                productName.invalid && (productName.dirty || productName.touched),
+              'is-valid': productName.valid && (productName.dirty || productName.touched)
+            }"
+          />
+        </label>
+        <div
+          *ngIf="productName.valid && (productName.dirty || productName.touched)"
+          class="valid-feedback"
+        >
+          Looks good!
+        </div>
+
+        <div
+          *ngIf="productName.invalid && productName.touched"
+          class="invalid-feedback"
+        >
+          Name is required.
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="productName"
+          >Product Name
+          <select
+            id="productName"
+            formControlName="productName"
+            class="form-control"
+          >
+            <option
+              *ngFor="let productName of productNames"
+              [ngValue]="productName"
+              >{{ productName }}</option
+            >
+          </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="bloodtType"
+          >Blood Type
+          <select
+            id="bloodtType"
+            formControlName="bloodtType"
+            class="form-control"
+          >
+            <option
+              *ngFor="let bloodtType of bloodtTypes"
+              [ngValue]="bloodtType"
+              >{{ bloodtType || patient.bloodtType }}</option
+            >
+          </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="volume"
+          >Volume
+          <input
+            id="volume"
+            type="text"
+            value="{{ volume }}"
+            class="form-control"
+            readonly
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="numOfBags"
+          >Number of Bags
+          <input
+            id="numOfBags"
+            type="number"
+            formControlName="numOfBags"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                numOfBags.invalid && (numOfBags.dirty || numOfBags.touched),
+              'is-valid':
+                numOfBags.valid && (numOfBags.dirty || numOfBags.touched)
+            }"
+            min="1"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="priority"
+          >Request Priority
+          <select id="priority" formControlName="priority" class="form-control">
+            <option *ngFor="let priority of priorities" [ngValue]="priority">{{
+              priority
+            }}</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="patientId"
+          >Patient Id
+          <input
+            id="patientId"
+            type="number"
+            formControlName="patientId"
+            class="form-control"
+            min="1"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="requiredDate"
+          >Required Date
+          <input
+            id="requiredDate"
+            type="date"
+            formControlName="requiredDate"
+            class="form-control"
+          />
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="requestedBy"
+          >Requested By
+          <input
+            id="requestedBy"
+            type="text"
+            value="{{ requestedBy }}"
+            class="form-control"
+            readonly
+          />
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!RequestForm.valid"
+        class="btn btn-success mt-3 mr-2"
+      >
+        Submit
+      </button>
+
+      <button
+        type="button"
+        (click)="onReset()"
+        [disabled]="!RequestForm.dirty"
+        class="btn btn-primary mt-3"
+      >
+        Clear
+      </button>
+    </form>
+
+    <p>{{ RequestForm.value | json }}</p>
+    <p>{{ RequestForm.status }}</p>
+  </div>
+</div>

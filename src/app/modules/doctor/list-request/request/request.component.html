@@ -1,0 +1,13 @@
+<a
+  [routerLink]="['./', request.id]"
+  class="list-group-item list-group-item-action list-group-item-info"
+  (click)="onSelected()"
+>
+  <span class="badge">Request Id : {{ request.id }}</span> |
+  <span class="badge"
+    >Required Date :
+    {{ request.requiredDate | date: "EEEE, d, MMMM, y, h:mm a" }}</span
+  >
+  |
+  <span class="badge">Patient Id : {{ request.patientId }}</span>
+</a>

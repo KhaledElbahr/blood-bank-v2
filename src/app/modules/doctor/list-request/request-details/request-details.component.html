@@ -1,0 +1,14 @@
+<h3>Rerquest Details</h3>
+<div class="jumbotron">
+  <p class="lead">Product Name : {{ request.productName }}</p>
+  <p>Blood Type : {{ request.bloodtType }}</p>
+  <p>Number of Bags : {{ request.numOfBags }}</p>
+  <p>Request Priority : {{ request.priority }}</p>
+  <p>Patient ID : {{ request.patientId }}</p>
+  <p>Requested Date : {{ request.requestedDate | date: 'EEEE, d, MMMM, y, h:mm a' }}</p>
+  <p>Required Date : {{ request.requiredDate | date:'EEEE, d, MMMM, y, h:mm a' }}</p>
+  <hr class="my-4" />
+  <p>Request ID : {{ request.id }}</p>
+  <button class="btn btn-success">Update</button>
+  <button class="btn btn-danger">Delete</button>
+</div>
