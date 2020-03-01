@@ -1,5 +1,14 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <img
+    src="../../../../assets/images/doctor/doctor.png"
+    alt="doctor-image"
+    style="max-height: 90px;"
+  />
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
     <form [formGroup]="RequestForm" (ngSubmit)="onSubmit()">
       <!-- <div class="form-group">
         <label for="productName"
@@ -59,7 +68,7 @@
             <option
               *ngFor="let bloodtType of bloodtTypes"
               [ngValue]="bloodtType"
-              >{{ bloodtType || patient.bloodtType }}</option
+              >{{ bloodtType }}</option
             >
           </select>
         </label>
