@@ -67,14 +67,14 @@ export class RequestEditComponent implements OnInit {
     });
   }
 
-  // onSubmit() {
+  onSubmit() {
   //   // TODO: Use EventEmitter with form value
   //   // console.warn(this.RequestForm.value);
   //   this.requestService.createRequest(this.RequestForm.value);
   //   this.RequestForm.reset();
   //   window.confirm('You have successfully added a new request.');
   //   this.router.navigate(['doctor/requests']);
-  // }
+  }
 
   // onReset() {
   //   this.RequestForm.reset();
