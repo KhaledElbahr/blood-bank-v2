@@ -1,9 +1,7 @@
 import { RequestService } from './../request.service';
 import { Request } from './../request';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-request',
@@ -11,8 +9,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./list-request.component.scss']
 })
 export class ListRequestComponent implements OnInit {
-  requests;
-  search;
+  requests: Request[];
   selectedId: number;
 
   constructor(
@@ -28,13 +25,8 @@ export class ListRequestComponent implements OnInit {
   getDetails(request) {
     this.selectedRequest = request;
     // this.router.navigate(['request', request.id]);
-    console.log(this.selectedRequest);
+    // console.log(this.selectedRequest);
   }
-
-  // getDetails(request) {
-  //   this.selectedRequest = request;
-  //   console.log(this.selectedRequest);
-  // }
 
   getReqs() {
     // this.requests = this.route.paramMap.pipe(

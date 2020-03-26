@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -13,7 +14,8 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) {}
 
   get name() {
     return this.loginForm.get('name');
@@ -26,8 +28,9 @@ export class LoginComponent {
   onSubmit() {
       // TODO: Use EventEmitter with form value
     // console.warn(this.loginForm.value);
-    this.loginForm.reset();
-    window.confirm('You have successfully logged in.');
+    // this.loginForm.reset();
+    this.authService.login();
+    // window.confirm('You have successfully logged in.');
   }
 
 }

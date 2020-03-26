@@ -1,4 +1,7 @@
+import { UserService } from './../../user.service';
+import { User } from './../../user';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
+  user: User;
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+      this.route.fragment.subscribe();
+      let id: number;
+      this.route.params.subscribe(
+        (params: Params) => {
+          id = +params.id;
+        }
+      );
+      this.user = this.userService.getUser(id);
+    }
 
 }

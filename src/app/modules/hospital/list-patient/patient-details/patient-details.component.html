@@ -1,0 +1,13 @@
+<h3>Patient Details</h3>
+<div class="jumbotron">
+  <p class="lead">Patient ID : {{ patient.id }}</p>
+  <p>Civil ID : {{ patient.civilId }}</p>
+  <p>Full Name : {{ patient.name }}</p>
+  <p>Patient Phone : {{ patient.phone }}</p>
+  <p>Patient Gender : {{ patient.gender }}</p>
+  <p>Blood Group : {{ patient.bloodType }}</p>
+  <hr class="my-4" />
+  <button class="btn btn-success" (click)="update()">Update</button>
+  <button class="btn btn-success" (click)="delete()">Delete</button>
+</div>
+

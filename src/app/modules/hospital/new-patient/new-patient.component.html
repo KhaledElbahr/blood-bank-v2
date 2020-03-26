@@ -1,0 +1,151 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="firstName"
+          >First Name
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                firstName.invalid && (firstName.dirty || firstName.touched),
+              'is-valid':
+                firstName.valid && (firstName.dirty || firstName.touched)
+            }"
+          />
+        </label>
+        <div
+          *ngIf="firstName.valid && (firstName.dirty || firstName.touched)"
+          class="valid-feedback"
+        >
+          Looks good!
+        </div>
+
+        <div
+          *ngIf="firstName.invalid && firstName.touched"
+          class="invalid-feedback"
+        >
+          First Name is required.
+        </div>
+      </div>
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lastName"
+          >Last Name
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                lastName.invalid && (lastName.dirty || lastName.touched),
+              'is-valid': lastName.valid && (lastName.dirty || lastName.touched)
+            }"
+          />
+        </label>
+        <div
+          *ngIf="lastName.valid && (lastName.dirty || lastName.touched)"
+          class="valid-feedback"
+        >
+          Looks good!
+        </div>
+
+        <div
+          *ngIf="firstName.invalid && firstName.touched"
+          class="invalid-feedback"
+        >
+          First Name is required.
+        </div>
+      </div>
+      <!-- Civil ID -->
+      <div class="form-group">
+        <label for="civilId"
+          >Civil ID
+          <input
+            id="civilId"
+            type="text"
+            formControlName="civilId"
+            class="form-control"
+          />
+        </label>
+      </div>
+      <!-- Gender -->
+      <div class="form-group">
+        <label for="gender" class="d-block">Gender </label>
+        <input type="radio" formControlName="gender" value="male" /> Male
+        <input type="radio" formControlName="gender" value="female" /> Female
+      </div>
+      <!-- Blood Type -->
+      <div class="form-group">
+        <label for="bloodType"
+          >Blood Type
+          <select id="bloodType" formControlName="bloodType" class="form-control">
+            <option *ngFor="let bloodType of bloodTypes" [ngValue]="bloodType">{{
+              bloodType
+            }}</option>
+          </select>
+        </label>
+      </div>
+      <!-- E-mail Address -->
+      <div class="form-group">
+        <label for="email"
+          >E-mail Address
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="form-control"
+          />
+        </label>
+      </div>
+      <!-- Contact Number -->
+      <div class="form-group">
+        <label for="phone"
+          >Contact Number
+          <input
+            id="phone"
+            type="text"
+            formControlName="phone"
+            class="form-control"
+          />
+        </label>
+      </div>
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address"
+          >Address
+          <input
+            id="address"
+            type="text"
+            formControlName="address"
+            class="form-control"
+          />
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!patientForm.valid"
+        class="btn btn-success mt-3 mr-2"
+      >
+        Add User
+      </button>
+
+      <button
+        type="reset"
+        [disabled]="!patientForm.dirty"
+        class="btn btn-primary mt-3"
+      >
+        Reset
+      </button>
+    </form>
+
+    <!-- <p>{{ patientForm.value | json }}</p>
+      <p>{{ patientForm.status }}</p> -->
+  </div>
+</div>

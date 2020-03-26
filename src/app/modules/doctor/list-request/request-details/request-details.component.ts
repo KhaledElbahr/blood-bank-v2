@@ -1,5 +1,5 @@
 import { Request } from './../../request';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RequestService } from '../../request.service';
 
@@ -8,11 +8,12 @@ import { RequestService } from '../../request.service';
   templateUrl: './request-details.component.html',
   styleUrls: ['./request-details.component.scss']
 })
-export class RequestDetailsComponent implements OnInit {
+export class RequestDetailsComponent implements OnInit, OnChanges {
   request: Request;
 
   constructor(
     private requestService: RequestService,
+    private router: Router,
     private route: ActivatedRoute) { }
 
     ngOnInit() {
@@ -31,7 +32,20 @@ export class RequestDetailsComponent implements OnInit {
         }
       );
       this.request = this.requestService.getRequest(id);
+      // console.log(this.request);
       // this.serverName = this.request.name;
       // this.serverStatus = this.server.status;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+      console.log(changes);
+      // const currentRequest = changes.currentRequest;
+      // const previousRequest = changes.currentRequest;
+      // console.log(currentRequest);
+      // console.log(previousRequest);
+    }
+
+    onUpdate() {
+      this.router.navigate(['editMode'], {relativeTo: this.route});
     }
 }

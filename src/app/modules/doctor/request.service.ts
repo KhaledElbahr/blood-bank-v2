@@ -12,6 +12,10 @@ export class RequestService {
   private requests: Request[] = REQUESTS;
   private patients: Patient[] = PATIENT;
 
+  createRequest(request: Request) {
+    this.requests.push(request);
+  }
+
   getRequests() {
     return this.requests.slice();
   }
@@ -31,7 +35,6 @@ export class RequestService {
   getRequest(id: number | string) {
     const request = this.requests.find(
       r => {
-        // console.log(s);
         return r.id === id;
       }
     );

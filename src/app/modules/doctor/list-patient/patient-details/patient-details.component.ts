@@ -25,20 +25,18 @@ export class PatientDetailsComponent implements OnInit {
       //   }
       // );
       this.route.fragment.subscribe();
-      let civilId: any;
+      let civilId: string;
       this.route.params.subscribe(
         (params: Params) => {
-          civilId = +params.civilId;
+          civilId = params.civilId;
         }
       );
       this.patient = this.requestService.fetchPatientDataByCivilId(civilId);
-      console.log(this.patient);
+      console.log(typeof(civilId));
     }
-
 
     addRequest() {
       this.router.navigate(['../../../add-request',
       { pId: this.patient.id} ], { relativeTo: this.route });
     }
-
 }

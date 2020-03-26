@@ -12,9 +12,9 @@ export class ListPatientComponent {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   getPatientData(ctrl) {
-    // this.router.navigate(['./', this.search], { relativeTo: this.route });
+    this.router.navigate(['./patient', this.search], { relativeTo: this.route });
     console.log(this.search);
-    // console.log(ctrl);
+    console.log(ctrl);
   }
 
 }

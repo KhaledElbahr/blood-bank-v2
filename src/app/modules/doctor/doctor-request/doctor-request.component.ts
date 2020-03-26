@@ -2,7 +2,7 @@ import { Patient } from './../patient';
 import { RequestService } from './../request.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-request',
@@ -15,35 +15,59 @@ export class DoctorRequestComponent implements OnInit {
     id: 1
   };
 
-  productNames: ['Whole Blood', 'Apheresis'];
-  bloodtTypes: ['A+', 'B+', 'O'];
-  priorities: ['critical', 'high', 'middle', 'low'];
-  volume = '450ml';
-  requestedBy = this.doctor.name;
+  productNames: [
+    { id: 1, value: 'Whole Blood' },
+    { id: 2, value: 'Apheresis' }
+  ];
+  bloodTypes: [
+    { id: 1, value: 'A+' },
+    { id: 2, value: 'B+' },
+    { id: 3, value: 'O' }
+  ];
+  priorities: [
+    { id: 1, value: 'critical' },
+    { id: 2, value: 'normal' }
+  ];
+  // volume = '450ml';
+  // requestedBy = this.doctor.name;
   patient: Patient;
   pId: number;
 
+
+  constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private requestService: RequestService) { }
+
+
   RequestForm = this.fb.group({
-    productName: ['', Validators.required],
-    bloodtType: ['', Validators.required],
+    id: [this.loop()],
+    productName: [''],
+    bloodType: [''],
+    volume: [{ value: '450ml', disabled: true }],
     numOfBags: ['', Validators.required],
-    priority: ['', Validators.required],
+    priority: [''],
     patientId: ['', Validators.required],
     requiredDate: ['', Validators.required],
+    requestedBy: [this.doctor.name]
   });
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private requestService: RequestService) {}
+  // TODO: for develop purposes only
+  loop(): number {
+    for (let i = 1; i++;) {
+      return (i + 5);
+    }
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       (params: Params) => {
         this.pId = +params.params.pId;
         this.patient = this.requestService.fetchPatientDataById(this.pId);
-        // console.log(this.pId);
       }
     );
-    // this.RequestForm.controls.bloodtType.patchValue(this.patient.bloodType);
-    // this.RequestForm.controls.patientId.patchValue(this.patient.id);
+    this.patient ? this.RequestForm.controls.patientId.patchValue(this.patient.id)
+      : this.RequestForm.controls.patientId.patchValue('');
   }
 
   get productName() {
@@ -55,10 +79,12 @@ export class DoctorRequestComponent implements OnInit {
   }
 
   onSubmit() {
-      // TODO: Use EventEmitter with form value
+    // TODO: Use EventEmitter with form value
     // console.warn(this.RequestForm.value);
+    this.requestService.createRequest(this.RequestForm.value);
     this.RequestForm.reset();
-    window.confirm('You have successfully logged in.');
+    window.confirm('You have successfully added a new request.');
+    this.router.navigate(['doctor/requests']);
   }
 
   onReset() {

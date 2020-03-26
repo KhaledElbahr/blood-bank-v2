@@ -1,3 +1,31 @@
-<p>
-  search-user works!
-</p>
+<div class="row search-body">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
+    <img
+      src="../../../../assets/images/doctor/nurse.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
+  </div>
+
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+ 
+        placeholder="User Name..."
+      />
+      <!-- <i class="fas fa-search icon search-icon" aria-hidden="true"></i> -->
+    </div>
+
+    <!-- lazy loading scroll -->
+      <div class="list-group">
+        <app-user
+          [routerLink]="['./', user.id]"
+          [user]="user"
+          *ngFor="let user of users"
+          (click)="getDetails(user)"
+        ></app-user>
+      </div>
+  </div>
+</div>

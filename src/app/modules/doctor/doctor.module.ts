@@ -13,6 +13,7 @@ import { RequestDetailsComponent } from './list-request/request-details/request-
 import { RequestComponent } from './list-request/request/request.component';
 import { PatientDetailsComponent } from './list-patient/patient-details/patient-details.component';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
+import { RequestEditComponent } from './list-request/request-details/request-edit/request-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SearchPipe } from 'src/app/pipes/search.pipe';
     DoctorHomeComponent, DoctorRequestComponent, ListRequestComponent, ListPatientComponent, RequestDetailsComponent,
     RequestComponent,
     PatientDetailsComponent,
-    SearchPipe
+    SearchPipe,
+    RequestEditComponent
   ],
   imports: [
     CommonModule,

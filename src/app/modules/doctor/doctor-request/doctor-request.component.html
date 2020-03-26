@@ -1,14 +1,13 @@
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
     <img
-    src="../../../../assets/images/doctor/doctor.png"
-    alt="doctor-image"
-    style="max-height: 90px;"
-  />
+      src="../../../../assets/images/doctor/doctor.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
     <form [formGroup]="RequestForm" (ngSubmit)="onSubmit()">
       <!-- <div class="form-group">
         <label for="productName"
@@ -39,54 +38,76 @@
           Name is required.
         </div>
       </div> -->
-
+      <!-- Product Name -->
       <div class="form-group">
-        <label for="productName"
+        <label for="productName" class="control-label"
           >Product Name
           <select
             id="productName"
             formControlName="productName"
             class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                productName.invalid &&
+                (productName.dirty || productName.touched),
+              'is-valid':
+                productName.valid && (productName.dirty || productName.touched)
+            }"
           >
+            <option [ngValue]="null" disabled>--Select product Name--</option>
             <option
               *ngFor="let productName of productNames"
-              [ngValue]="productName"
-              >{{ productName }}</option
+              [ngValue]="productName.id"
+              >{{ productName.value }}</option
             >
           </select>
         </label>
-      </div>
 
+        <div
+          *ngIf="
+            productName.valid && (productName.dirty || productName.touched)
+          "
+          class="help-block"
+        >
+          Looks good!
+        </div>
+        <div
+          *ngIf="productName.errors?.required && productName.touched"
+          class="help-block"
+        >
+          Product Name is required.
+        </div>
+      </div>
+      <!-- Blood Type -->
       <div class="form-group">
-        <label for="bloodtType"
+        <label for="bloodType"
           >Blood Type
           <select
-            id="bloodtType"
-            formControlName="bloodtType"
+            id="bloodType"
+            formControlName="bloodType"
             class="form-control"
           >
             <option
-              *ngFor="let bloodtType of bloodtTypes"
-              [ngValue]="bloodtType"
-              >{{ bloodtType }}</option
+              *ngFor="let bloodType of bloodTypes"
+              [ngValue]="bloodType.id"
+              >{{ productName.value }}</option
             >
           </select>
         </label>
       </div>
-
+      <!-- Volume -->
       <div class="form-group">
         <label for="volume"
           >Volume
           <input
             id="volume"
             type="text"
-            value="{{ volume }}"
+            formControlName="volume"
             class="form-control"
-            readonly
           />
         </label>
       </div>
-
+      <!-- Number of Bags -->
       <div class="form-group">
         <label for="numOfBags"
           >Number of Bags
@@ -105,18 +126,20 @@
           />
         </label>
       </div>
-
+      <!-- Request Priority -->
       <div class="form-group">
         <label for="priority"
           >Request Priority
           <select id="priority" formControlName="priority" class="form-control">
-            <option *ngFor="let priority of priorities" [ngValue]="priority">{{
-              priority
-            }}</option>
+            <option
+              *ngFor="let priority of priorities"
+              [ngValue]="priority.id"
+              >{{ priority.value }}</option
+            >
           </select>
         </label>
       </div>
-
+      <!-- Patient Id -->
       <div class="form-group">
         <label for="patientId"
           >Patient Id
@@ -126,10 +149,11 @@
             formControlName="patientId"
             class="form-control"
             min="1"
+            [readonly]="patient"
           />
         </label>
       </div>
-
+      <!-- Required Date -->
       <div class="form-group">
         <label for="requiredDate"
           >Required Date
@@ -141,16 +165,16 @@
           />
         </label>
       </div>
-
+      <!-- Requested By -->
       <div class="form-group">
         <label for="requestedBy"
           >Requested By
           <input
             id="requestedBy"
             type="text"
-            value="{{ requestedBy }}"
+            formControlName="requestedBy"
             class="form-control"
-            readonly
+            disabled
           />
         </label>
       </div>

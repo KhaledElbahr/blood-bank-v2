@@ -1,24 +1,45 @@
-<h3>Rerquest Details</h3>
 <div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
     <img
-    src="../../../../assets/images/doctor/nurse.png"
-    alt="doctor-image"
-    style="max-height: 90px;"
-  />
+      src="../../../../assets/images/doctor/nurse.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
   </div>
-</div>
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
+    <h3>Rerquest Details</h3>
+    <div class="jumbotron">
 
-<div class="jumbotron">
-  <p class="lead">Product Name : {{ request.productName }}</p>
-  <p>Blood Type : {{ request.bloodtType }}</p>
-  <p>Number of Bags : {{ request.numOfBags }}</p>
-  <p>Request Priority : {{ request.priority }}</p>
-  <p>Patient ID : {{ request.patientId }}</p>
-  <p>Requested Date : {{ request.requestedDate | date: 'EEEE, d, MMMM, y, h:mm a' }}</p>
-  <p>Required Date : {{ request.requiredDate | date:'EEEE, d, MMMM, y, h:mm a' }}</p>
-  <hr class="my-4" />
-  <p>Request ID : {{ request.id }}</p>
-  <button class="btn btn-success">Update</button>
-  <button class="btn btn-danger">Delete</button>
+
+      <!-- <span class="lead" [ngSwitch]="request.productName.id">
+        <p *ngSwitchCase="1">
+          Whole Blood
+        </p>
+        <p *ngSwitchCase="2">
+          Apheresis
+        </p>
+        <p *ngSwitchDefault>
+          N/A
+        </p>
+      </span> -->
+
+      <p class="lead">Product Name : {{ request.productName.value }}</p>
+      <p>Blood Type : {{ request.bloodtType.value }}</p>
+      <p>Number of Bags : {{ request.numOfBags }}</p>
+      <p>Request Priority : {{ request.priority.value }}</p>
+      <p>Patient ID : {{ request.patientId }}</p>
+      <p>
+        Requested Date :
+        {{ request.requestedDate | date: "EEEE, d, MMMM, y, h:mm a" }}
+      </p>
+      <p>
+        Required Date :
+        {{ request.requiredDate | date: "EEEE, d, MMMM, y, h:mm a" }}
+      </p>
+      <hr class="my-4" />
+      <p>Request ID : {{ request.id }}</p>
+      <button class="btn btn-success" (click)="onUpdate()">Update</button>
+      <button class="btn btn-danger">Delete</button>
+    </div>
+  </div>
 </div>
