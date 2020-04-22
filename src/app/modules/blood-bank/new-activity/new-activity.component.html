@@ -1,3 +1,195 @@
-<p>
-  new-activity works!
-</p>
+
+<div class="row">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
+    <img
+      src="../../../../assets/images/doctor/doctor.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
+  </div>
+
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
+    <form
+      class="example-form"
+      [formGroup]="activityForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Donor Id -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Donor Id</mat-label>
+          <input
+            matInput
+            type="number"
+            #civilIdInput
+            formControlName="donorId"
+            placeholder="Donor Id..."
+            required
+          />
+          <mat-error *ngIf="donorId.touched && !donorId.hasError('required')">
+            Please enter a valid donor Id
+          </mat-error>
+          <mat-error *ngIf="donorId.hasError('required')">
+            Donor Id is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="donorId.valid && (donorId.dirty || donorId.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Donor status -->
+      <div class="form-group">
+        <mat-radio-group formControlName="status" aria-label="Select an option">
+          <mat-radio-button
+            type="radio"
+            *ngFor="let status of statuses"
+            [value]="status.id"
+            >{{ status.value | uppercase }}</mat-radio-button
+          >
+          <mat-error *ngIf="status.hasError('required') && status.touched">
+            Donor status is required
+          </mat-error>
+        </mat-radio-group>
+      </div>
+      <!-- Type of Donation -->
+      <div class="form-group">
+        <mat-radio-group
+          formControlName="donationType"
+          aria-label="Select an option"
+        >
+          <mat-radio-button
+            type="radio"
+            *ngFor="let donationType of donationTypes"
+            [value]="donationType.id"
+            >{{ donationType.value | uppercase }}</mat-radio-button
+          >
+          <mat-error
+            *ngIf="donationType.hasError('required') && donationType.touched"
+          >
+            Type of Donation is required
+          </mat-error>
+        </mat-radio-group>
+      </div>
+      <!-- Viruses -->
+      <div class="form-group">
+        <mat-slide-toggle color="primary" #toggle>Has Viruses</mat-slide-toggle>
+      </div>
+
+      <mat-form-field *ngIf="toggle.checked">
+        <mat-label>Viruses</mat-label>
+        <mat-select [formControl]="virus" name="virus" multiple>
+          <mat-option *ngFor="let virus of viruses" [value]="virus.id">
+            {{virus.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <mat-form-field>
+        <mat-label>Viruses</mat-label>
+        <mat-select [formControl]="virus" name="virus" multiple>
+          <mat-option *ngFor="let virus of viruses" [value]="virus.id">{{
+            virus.value
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      <!-- </div> -->
+      <!-- Temperature -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Temperature</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="temp"
+            placeholder="Enter Donor Temp"
+            required
+          />
+          <span matSuffix>&#176;C</span>
+          <mat-error *ngIf="temp.hasError('required')">
+            Temperature is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="temp.valid && (temp.dirty || temp.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Weight -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Weight</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="weight"
+            placeholder="Enter Donor Weight"
+            required
+          />
+          <span matSuffix>Kg</span>
+          <mat-error *ngIf="weight.hasError('required')">
+            Weight is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="weight.valid && (weight.dirty || weight.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Height -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Height</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="height"
+            placeholder="Enter Donor Height"
+            required
+          />
+          <span matSuffix>Cm</span>
+          <mat-error *ngIf="height.hasError('required')">
+            Height is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="height.valid && (height.dirty || height.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Comments -->
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. This donor has..."></textarea>
+        </mat-form-field>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!activityForm.valid"
+        class="btn btn-success mt-3 mr-2"
+      >
+        Add Donor
+      </button>
+
+      <button
+        type="reset"
+        [disabled]="!activityForm.dirty"
+        class="btn btn-primary mt-3"
+      >
+        Reset
+      </button>
+    </form>
+
+    <p>{{ activityForm.value | json }}</p>
+    <p>{{ activityForm.status }}</p>
+  </div>

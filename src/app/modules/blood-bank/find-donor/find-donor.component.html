@@ -1,3 +1,35 @@
-<p>
-  find-donor works!
-</p>
+<div class="row">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
+    <img
+      src="../../../../assets/images/doctor/patient-icon.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
+  </div>
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
+    <div class="form-group">
+      <mat-form-field style="width: 70%;" floatLabel="auto">
+        <mat-label>Civil Id</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="search"
+          #civilId
+          maxlength="14"
+          placeholder="Search By CivilId..."
+        />
+      </mat-form-field>
+
+      <button
+        [routerLink]="['./donor', search]"
+        mat-raised-button
+        color="primary"
+        class="btm"
+      >
+        Get Donor Details
+      </button>
+    </div>
+    29672174500031
+    <router-outlet></router-outlet>
+  </div>
+</div>

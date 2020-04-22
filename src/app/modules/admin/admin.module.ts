@@ -14,8 +14,8 @@ import { SearchUserComponent } from './search-user/search-user.component';
 import { UserComponent } from './search-user/user/user.component';
 // Shared Module
 import { ConfirmPasswordModule } from 'src/app/shared/confirm-password/confirm-password.module';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 // Lazy Loading Scroll
-import {MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import {MatInputModule} from '@angular/material';
     FormsModule,
     ConfirmPasswordModule,
     AdminRoutingModule,
-    MatInputModule
+    MaterialModule,
   ],
 })
 export class AdminModule { }

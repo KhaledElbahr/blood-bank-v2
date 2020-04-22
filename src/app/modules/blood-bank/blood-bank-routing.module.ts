@@ -5,6 +5,8 @@ import { BloodBankHomeComponent } from './blood-bank-home/blood-bank-home.compon
 import { FindDonorComponent } from './find-donor/find-donor.component';
 import { NewDonorComponent } from './new-donor/new-donor.component';
 import { NewActivityComponent } from './new-activity/new-activity.component';
+import { CanDeactivateGuard } from 'src/app/Auth/can-deactivate.guard';
+import { DonorDetailsComponent } from './find-donor/donor-details/donor-details.component';
 
 const routes: Routes = [
   {
@@ -15,9 +17,10 @@ const routes: Routes = [
         path: '',
         children: [
           { path: '', component: BloodBankHomeComponent },
-          { path: 'add-donor', component: NewDonorComponent },
-          { path: 'find-donor', component: FindDonorComponent },
-          { path: 'requests', component: NewActivityComponent },
+          { path: 'add-donor', component: NewDonorComponent, canDeactivate: [CanDeactivateGuard] },
+          { path: 'find-donor', component: FindDonorComponent, children:
+          [ { path: 'donor/:civilId', component: DonorDetailsComponent }] },
+          { path: 'add-activity', component: NewActivityComponent, canDeactivate: [CanDeactivateGuard] },
         ]
       }
     ]

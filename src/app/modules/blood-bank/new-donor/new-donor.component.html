@@ -1,3 +1,181 @@
-<p>
-  new-donor works!
-</p>
+<div class="row">
+  <div class="col-xs-8 col-sm-6 col-md-3 col-md-offset-2 col-sm-offset-1">
+    <img
+      src="../../../../assets/images/doctor/doctor.png"
+      alt="doctor-image"
+      style="max-height: 90px;"
+    />
+  </div>
+
+  <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
+    <form [formGroup]="donorForm" (ngSubmit)="onSubmit()">
+      <!-- Civil Id -->
+      <div class="form-group" hintLabel="Enter 14 characters">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Civil Id</mat-label>
+          <input
+            matInput
+            type="text"
+            #civilIdInput
+            formControlName="civilId"
+            maxlength="14"
+            placeholder="Civil Id..."
+            required
+          />
+          <mat-hint align="end"
+            >{{ civilIdInput.value?.length || 0 }}/14</mat-hint
+          >
+          <mat-error
+            *ngIf="civilId.hasError('minlength') && civilId.touched && !civilId.hasError('required')"
+          >
+            Please enter a valid civil Id
+          </mat-error>
+          <mat-error *ngIf="civilId.hasError('required')">
+            Civil Id is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="civilId.valid && (civilId.dirty || civilId.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- First Name -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="firstName"
+            placeholder="@ex.Ahmed"
+            required
+          />
+          <mat-error *ngIf="firstName.hasError('required')">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="firstName.valid && (firstName.dirty || firstName.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Last Name -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="lastName"
+            placeholder="@ex.Ahmed"
+            required
+          />
+          <mat-error *ngIf="lastName.hasError('required')">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="lastName.valid && (lastName.dirty || lastName.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Gender -->
+      <div class="form-group">
+        <mat-radio-group formControlName="gender" aria-label="Select an option">
+          <mat-radio-button
+            type="radio"
+            *ngFor="let type of types"
+            [value]="type.id"
+            >{{ type.value | uppercase }}</mat-radio-button
+          >
+          <mat-error *ngIf="gender.hasError('required') && gender.touched">
+            Gender is required
+          </mat-error>
+        </mat-radio-group>
+      </div>
+      <!-- E-mail Address -->
+      <div class="form-group">
+        <mat-form-field floatLabel="auto">
+          <mat-label>E-mail Address</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="@ex.Ahmed"
+          />
+          <mat-error
+            *ngIf="email.hasError('email') && !email.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="email.valid && (email.dirty || email.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+      <!-- Contact Phone -->
+      <div class="form-group">
+        <mat-form-field hintLabel="Max 11 characters">
+          <mat-label>Phone Number</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+            #phoneInput
+            maxLength="11"
+            placeholder="@01"
+            required
+          />
+          <mat-hint align="end"
+            >{{ phoneInput.value?.length || 0 }}/11</mat-hint
+          >
+          <mat-error
+            *ngIf="phone.hasError('minlength') && phone.touched && !phone.hasError('required')"
+          >
+            Please enter a valid phone number
+          </mat-error>
+          <mat-error *ngIf="phone.hasError('required')">
+            Phone is required
+          </mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="phone.valid && (phone.dirty || phone.touched)"
+          class="help-block"
+        >
+          <small>Looks good!</small>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!donorForm.valid"
+        class="btn btn-success mt-3 mr-2"
+      >
+        Add Donor
+      </button>
+
+      <button
+        type="reset"
+        [disabled]="!donorForm.dirty"
+        class="btn btn-primary mt-3"
+      >
+        Reset
+      </button>
+    </form>
+
+    <p>{{ donorForm.value | json }}</p>
+    <p>{{ gender.value | json }}</p>
+    <!-- <p>{{email.value | json }}</p> -->
+    <p>{{ donorForm.status }}</p>
+  </div>
+</div>

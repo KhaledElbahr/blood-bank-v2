@@ -26,4 +26,8 @@ export class PatientDetailsComponent implements OnInit {
       this.patient = this.patientService.fetchPatientDataByCivilId(civilId);
       console.log(this.patient);
     }
+
+    update() {}
+
+    delete() {}
 }

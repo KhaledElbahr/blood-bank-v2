@@ -18,8 +18,7 @@ import { DialogService } from './services/dialog.service';
 import { ConfirmPasswordModule } from './shared/confirm-password/confirm-password.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
+import { MaterialModule } from './shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConfirmPasswordModule,
     BrowserAnimationsModule,
     InfiniteScrollModule,
+    MaterialModule
   ],
   providers: [
     AuthService,

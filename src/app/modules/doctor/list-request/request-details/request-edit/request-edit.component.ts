@@ -76,8 +76,8 @@ export class RequestEditComponent implements OnInit {
   //   this.router.navigate(['doctor/requests']);
   }
 
-  // onReset() {
-  //   this.RequestForm.reset();
-  // }
+  onReset() {
+    // this.EditRequestForm.reset();
+  }
 
 }

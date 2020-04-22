@@ -11,17 +11,22 @@ const appRoutes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent },
   {
     path: 'admin',
-    canActivate: [LoginAuthGuard],
+    // canActivate: [LoginAuthGuard],
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
   },
   {
+    path: 'blood-bank',
+    // canActivate: [LoginAuthGuard],
+    loadChildren: () => import('./modules/blood-bank/blood-bank.module').then(m => m.BloodBankModule),
+  },
+  {
     path: 'doctor',
-    canActivate: [LoginAuthGuard],
+    // canActivate: [LoginAuthGuard],
     loadChildren: () => import('./modules/doctor/doctor.module').then(m => m.DoctorModule),
   },
   {
     path: 'hospital',
-    canActivate: [LoginAuthGuard],
+    // canActivate: [LoginAuthGuard],
     loadChildren: () => import('./modules/hospital/hospital.module').then(m => m.HospitalModule),
   },
   { path: '**', component: PageNotFoundComponent }

@@ -9,20 +9,21 @@
 
   <div class="col-xs-12 col-sm-10 col-md-9 col-md-offset-2 col-sm-offset-1">
     <div class="form-group">
+      <!-- [(ngModel)]="requestId" -->
       <input
         type="number"
         min="1"
         class="form-control"
-        [(ngModel)]="requestId"
         placeholder="Request Id..."
       />
       <!-- <i class="fas fa-search icon search-icon" aria-hidden="true"></i> -->
     </div>
     <div class="list-group">
+      <!-- | search: requestId" -->
       <app-request
         [routerLink]="['./', request.id]"
         [request]="request"
-        *ngFor="let request of requests | search: requestId"
+        *ngFor="let request of requests"
         (click)="getDetails(request)"
       ></app-request>
     </div>

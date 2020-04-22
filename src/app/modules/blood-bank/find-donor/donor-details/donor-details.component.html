@@ -1,0 +1,27 @@
+<h3>Donor Details</h3>
+<!-- <div class="jumbotron">
+  <p class="lead">Donor ID : {{ donor.id }}</p>
+  <p>Civil ID : {{ donor.civilId }}</p>
+  <p>Full Name : {{ donor.name }}</p>
+  <p>Phone Number : {{ donor.phone }}</p>
+  <p>Donor Gender : {{ donor.gender }}</p>
+  <p>Blood Group : {{ donor.bloodType }}</p>
+  <hr class="my-4" />
+  <button class="btn btn-success" (click)="update()">Update</button>
+  <button class="btn btn-success" (click)="delete()">Delete</button>
+</div> -->
+
+<mat-card class="example-card">
+  <mat-card-content>
+    <p class="lead">Donor ID : {{ donor.id }}</p>
+    <p class="lead">Civil ID : {{ donor.civilId }}</p>
+    <p class="lead">Full Name : {{ donor.name }}</p>
+    <p class="lead">Phone Number : {{ donor.phone }}</p>
+    <p class="lead">Donor Gender : {{ donor.gender }}</p>
+    <p class="lead">Blood Group : {{ donor.bloodType }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="update()">UPDATE</button>
+    <button mat-raised-button color="warn" (click)="delete()">DELETE</button>
+  </mat-card-actions>
+</mat-card>
